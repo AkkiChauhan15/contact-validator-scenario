@@ -54,3 +54,26 @@ def test_normalize_phone_basic():
 
     # Assert
     assert result == "5551234567"
+
+def test_mask_email_short_local_part():
+    """Test masking an email with a very short local part."""
+    # Arrange
+    email = "jo@example.com"
+
+    # Act
+    result = mask_email(email)
+
+    # Assert
+    assert result == "j*@example.com"
+
+
+def test_is_valid_phone_wrong_length():
+    """Test that a phone number with the wrong number of digits is invalid."""
+    # Arrange
+    phone = "12345"
+
+    # Act
+    result = is_valid_phone(phone)
+
+    # Assert
+    assert result == False
