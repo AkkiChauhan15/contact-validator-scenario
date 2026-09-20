@@ -32,13 +32,48 @@ def test_is_valid_phone_true():
     assert result == True
 
 
-# def test_mask_email_basic():
-#     """Test masking a typical email address."""
-#     # Arrange
-#     email = "priya@example.com"
-#
-#     # Act
-#     result = mask_email(email)
-#
-#     # Assert
-#     assert result == "pr***@example.com"
+def test_mask_email_basic():
+    """Test masking a typical email address."""
+    # Arrange
+    email = "priya@example.com"
+
+    # Act
+    result = mask_email(email)
+
+    # Assert
+    assert result == "pr***@example.com"
+
+
+def test_normalize_phone_basic():
+    """Test normalizing a phone number with dashes to digits only."""
+    # Arrange
+    phone = "555-123-4567"
+
+    # Act
+    result = normalize_phone(phone)
+
+    # Assert
+    assert result == "5551234567"
+
+def test_mask_email_short_local_part():
+    """Test masking an email with a very short local part."""
+    # Arrange
+    email = "jo@example.com"
+
+    # Act
+    result = mask_email(email)
+
+    # Assert
+    assert result == "j*@example.com"
+
+
+def test_is_valid_phone_wrong_length():
+    """Test that a phone number with the wrong number of digits is invalid."""
+    # Arrange
+    phone = "12345"
+
+    # Act
+    result = is_valid_phone(phone)
+
+    # Assert
+    assert result == False
